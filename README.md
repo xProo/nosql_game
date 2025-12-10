@@ -2,6 +2,13 @@
 
 API RESTful pour gérer une collection de jeux vidéo avec une interface graphique moderne.
 
+## 🎥 Démonstration
+
+<video width="100%" controls>
+  <source src="Enregistrement de l'écran 2025-12-10 164353.mp4" type="video/mp4">
+  Votre navigateur ne supporte pas la balise vidéo. <a href="Enregistrement de l'écran 2025-12-10 164353.mp4">Téléchargez la vidéo</a>
+</video>
+
 ## 📋 Prérequis
 
 - **Node.js** (v16 ou supérieur)
