@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Game Collection Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+     
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🎮</span>
+                <h1>GAME VAULT</h1>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="collection">Collection</button>
+                <button class="nav-tab" data-tab="stats">Statistiques</button>
+            </nav>
+        </header>
+
+
+        <main class="main-content">
+       
+            <section id="collection-tab" class="tab-content active">
+
+                <div class="toolbar">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Rechercher un jeu...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <div class="filters">
+                        <select id="filter-genre">
+                            <option value="">Tous les genres</option>
+                        </select>
+                        <select id="filter-plateforme">
+                            <option value="">Toutes les plateformes</option>
+                        </select>
+                        <select id="filter-status">
+                            <option value="">Tous les statuts</option>
+                            <option value="termine-true">Terminés</option>
+                            <option value="termine-false">En cours</option>
+                            <option value="favori-true">Favoris</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="btn-add-game">
+                        <span>+</span> Ajouter un jeu
+                    </button>
+                    <button class="btn btn-secondary" id="btn-export">
+                         Exporter
+                    </button>
+                </div>
+
+   
+                <div class="games-grid" id="games-grid">
+                   
+                </div>
+
+               
+                <div class="empty-state" id="empty-state" style="display: none;">
+                    <span class="empty-icon">🎮</span>
+                    <h3>Aucun jeu dans votre collection</h3>
+                    <p>Commencez par ajouter votre premier jeu !</p>
+                </div>
+            </section>
+
+         
+            <section id="stats-tab" class="tab-content">
+                <div class="stats-container">
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <span class="stat-icon">🎯</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-total">0</span>
+                                <span class="stat-label">Jeux Total</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">✅</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-completed">0</span>
+                                <span class="stat-label">Terminés</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">⭐</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-favorites">0</span>
+                                <span class="stat-label">Favoris</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">⏱️</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-playtime">0h</span>
+                                <span class="stat-label">Temps de jeu</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">📊</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-avg-score">0</span>
+                                <span class="stat-label">Score moyen</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <h3>Jeux par Genre</h3>
+                            <div class="chart-bars" id="genre-chart"></div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Jeux par Plateforme</h3>
+                            <div class="chart-bars" id="platform-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal Ajout/Modification -->
+        <div class="modal-overlay" id="game-modal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2 id="modal-title">Ajouter un jeu</h2>
+                    <button class="modal-close" id="modal-close">&times;</button>
+                </div>
+                <form id="game-form">
+                    <input type="hidden" id="game-id">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="titre">Titre *</label>
+                            <input type="text" id="titre" required placeholder="Ex: The Legend of Zelda">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="genre">Genres * (séparés par des virgules)</label>
+                            <input type="text" id="genre" required placeholder="Ex: Action, Aventure, RPG">
+                        </div>
+                        <div class="form-group">
+                            <label for="plateforme">Plateformes * (séparées par des virgules)</label>
+                            <input type="text" id="plateforme" required placeholder="Ex: PC, PS5, Switch">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editeur">Éditeur</label>
+                            <input type="text" id="editeur" placeholder="Ex: Nintendo">
+                        </div>
+                        <div class="form-group">
+                            <label for="developpeur">Développeur</label>
+                            <input type="text" id="developpeur" placeholder="Ex: Nintendo EPD">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="annee_sortie">Année de sortie</label>
+                            <input type="number" id="annee_sortie" min="1970" max="2025" placeholder="2024">
+                        </div>
+                        <div class="form-group">
+                            <label for="metacritic_score">Score Metacritic (0-100)</label>
+                            <input type="number" id="metacritic_score" min="0" max="100" placeholder="85">
+                        </div>
+                        <div class="form-group">
+                            <label for="temps_jeu_heures">Temps de jeu (heures)</label>
+                            <input type="number" id="temps_jeu_heures" min="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="termine">
+                                <span class="checkmark"></span>
+                                Jeu terminé
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="btn-cancel">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
