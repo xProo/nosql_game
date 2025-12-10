@@ -4,10 +4,14 @@ API RESTful pour gérer une collection de jeux vidéo avec une interface graphiq
 
 ## 🎥 Démonstration
 
-<video width="100%" controls>
-  <source src="Enregistrement de l'écran 2025-12-10 164353.mp4" type="video/mp4">
-  Votre navigateur ne supporte pas la balise vidéo. <a href="video_demo.mp4">Téléchargez la vidéo</a>
-</video>
+> 📹 **[Cliquez ici pour voir la vidéo de démonstration](video_demo.mp4)** ou téléchargez-la pour la visionner localement.
+
+https://github.com/user-attachments/assets/[VOTRE-VIDEO-ICI]
+
+> **💡 Pour intégrer la vidéo directement sur GitHub :**
+> 1. Éditez ce README sur GitHub
+> 2. Faites glisser-déposer le fichier `video_demo.mp4` directement dans l'éditeur
+> 3. GitHub générera automatiquement un lien qui affichera la vidéo
 
 ## 📋 Prérequis
 
